@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    build: .
+    container_name: a04-crypto
+    restart: always
+    ports:
+      - "8004:80"

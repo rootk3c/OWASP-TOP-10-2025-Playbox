@@ -1,25 +1,28 @@
-FROM php:7.4-apache
+# 1. Use the lightweight Alpine image (~50MB vs ~400MB)
+FROM php:7.4-alpine
 
-# Flag
+# --- FLAG SETUP (Unchanged) ---
 RUN echo "OWASP{w47ch_0u7_f0r_m1m3_7yp35}" > /flag.txt
 RUN chown root:root /flag.txt && chmod 444 /flag.txt
 
-# Web Root
+# --- WEB ROOT SETUP (Unchanged) ---
 WORKDIR /var/www/html
 COPY src/ .
 
-# Permissions
+# --- PERMISSIONS (Unchanged) ---
+# We still set permissions so users can't overwrite files
 RUN chown -R root:root /var/www/html \
     && chmod -R 555 /var/www/html \
     && mkdir -p assets/themes \
     && chown www-data:www-data assets/themes \
     && chmod 755 assets/themes
 
-# Security
-RUN echo "<Directory /var/www/html/>" > /etc/apache2/conf-available/no-listing.conf \
-    && echo "    Options -Indexes" >> /etc/apache2/conf-available/no-listing.conf \
-    && echo "</Directory>" >> /etc/apache2/conf-available/no-listing.conf \
-    && a2enconf no-listing
+# --- SECURITY & SERVER (The Part That Changed) ---
+# We removed the 'a2enconf' and '/etc/apache2' lines because they don't exist here.
+# Instead, we use the PHP built-in server.
+# It is SECURE by default (it does not list directories).
 
-RUN echo "ServerTokens Prod" >> /etc/apache2/conf-available/security.conf \
-    && echo "ServerSignature Off" >> /etc/apache2/conf-available/security.conf
+EXPOSE 80
+
+# This command starts the server on Port 80
+CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html"]

@@ -16,7 +16,14 @@ cd "challenges/A01_2025_Broken_Access_Control"
 docker-compose up -d --force-recreate --build
 cd ..\..
 
-REM --- 3. Challenge A07 ---
+REM --- 3. Challenge A04 ---
+echo.
+echo [+] Recreating A04: Crypto Failures (Port 8004)...
+cd "challenges/A04_Cryptographic_Failures"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+REM --- 4. Challenge A07 ---
 echo.
 echo [+] Recreating A07: Auth Failure (Port 8007)...
 cd "challenges/A07_2025_Authentication_Failures"

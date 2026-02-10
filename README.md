@@ -50,7 +50,7 @@ Think of this as a "hacking simulator" or video game with different levels. Each
    ./start_lab.sh
    ```
 
-   _This will automatically start all three services: Dashboard, A01, and A07._
+   _This will automatically start all services: Dashboard, A01, A04, and A07._
 
    **Wait for the build process to complete** (may take 1-2 minutes on first run).
 
@@ -61,6 +61,7 @@ Think of this as a "hacking simulator" or video game with different levels. Each
 
    From here, you can click on the challenge cards to access:
    - **A01: Broken Access Control** → http://localhost:8001
+   - **A04: Cryptographic Failures** → http://localhost:8004
    - **A07: Authentication Failures** → http://localhost:8007
 
 5. **Stop the Lab**:
@@ -198,7 +199,49 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
 
 ---
 
-### Challenge 2: A07 - Authentication Failures
+### Challenge 2: A04 - Cryptographic Failures
+
+**Port:** 8004 | **Difficulty:** Beginner | **Category:** Sensitive Data Exposure
+
+#### 📋 Quick Overview
+
+This challenge demonstrates the critical difference between **encoding** and **encryption**. You'll audit a "Secure Password Vault" that claims to use "Military Grade Encryption" but actually uses Base64 encoding—providing zero security.
+
+#### 🎯 Your Mission
+
+Decode the supposedly "encrypted" passwords to capture the flag: `CTF{Encoding_Is_Not_Encryption_A04}`
+
+#### 🚀 Quick Start
+
+1. Open **http://localhost:8004**
+2. Notice the "encrypted" passwords ending with `==` (Base64 padding signature)
+3. Copy the super_admin's password
+4. Decode it: `echo "PASTE_HERE" | base64 -d`
+5. Explore the **Secure Vault** demo to see proper AES-256 encryption
+
+#### 🔗 Full Documentation
+
+**For detailed walkthrough, technical details, and learning resources:**
+
+👉 **[Read the Complete A04 Challenge Guide](challenges/A04_Cryptographic_Failures/README.md)**
+
+The dedicated guide includes:
+- Detailed exploitation steps with multiple methods
+- Code analysis of vulnerable vs secure implementations
+- Comparison table: Base64 vs AES-256
+- Common developer mistakes and how to fix them
+- Real-world breach case studies
+- Security best practices checklist
+
+#### 💡 Key Takeaway
+
+**Encoding ≠ Encryption**
+- Base64/Hex/URL encoding: Reversible by anyone (0% security)
+- AES-256/RSA encryption: Requires secret key (military-grade security)
+
+---
+
+### Challenge 3: A07 - Authentication Failures
 
 **Port:** 8007 | **Difficulty:** Intermediate | **Category:** Weak Authentication
 
@@ -375,6 +418,13 @@ Each vulnerability demonstrated here has caused real data breaches:
 - 2019: First American Financial exposed 885 million records due to missing authorization checks
 - 2020: Experian API allowed access to credit scores using any email address
 
+**A04 - Cryptographic Failures:**
+
+- 2012: LinkedIn breach exposed 6.5 million passwords due to unsalted SHA-1 hashing
+- 2013: Adobe breach leaked 38 million passwords using weak ECB mode encryption
+- 2014: Yahoo breach compromised 500 million accounts with outdated MD5 hashing
+- 2018: Marriott exposed credit card and passport data of 500 million guests due to inadequate encryption
+
 **A07 - Authentication Failures:**
 
 - 2021: Colonial Pipeline ransomware attack began with a compromised password
@@ -385,9 +435,9 @@ Each vulnerability demonstrated here has caused real data breaches:
 ## 🛠 Troubleshooting
 
 <details>
-<summary><strong>Port 8007 (A07) is not responding</strong></summary>
+<summary><strong>Challenge not responding (Port 8001, 8004, or 8007)</strong></summary>
 
-If you see "This site can't be reached" for A07:
+If you see "This site can't be reached" for any challenge:
 
 1. Check if the container is running:
 
@@ -395,18 +445,34 @@ If you see "This site can't be reached" for A07:
    docker ps -a
    ```
 
-2. If it's missing, manually start it:
+2. If it's missing or exited, manually start it:
 
+   **For A01 (Port 8001):**
+   ```bash
+   cd challenges/A01_2025_Broken_Access_Control
+   docker-compose up -d --build --force-recreate
+   cd ../..
+   ```
+   
+   **For A04 (Port 8004):**
+   ```bash
+   cd challenges/A04_Cryptographic_Failures
+   docker-compose up -d --build --force-recreate
+   cd ../..
+   ```
+   
+   **For A07 (Port 8007):**
    ```bash
    cd challenges/A07_2025_Authentication_Failures
    docker-compose up -d --build --force-recreate
+   cd ../..
    ```
 
 3. Verify it's now running:
    ```bash
    docker ps
    ```
-   Look for a container on port `8007`
+   Look for a container on the expected port
 
 </details>
 

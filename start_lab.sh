@@ -14,7 +14,13 @@ cd "challenges/A01_2025_Broken_Access_Control"
 docker-compose up -d --force-recreate --build
 cd ../..
 
-# 3. Challenge A07
+# 3. Challenge A04
+echo "[+] Recreating A04: Cryptographic Failures..."
+cd "challenges/A04_Cryptographic_Failures"
+docker-compose up -d --force-recreate --build
+cd ../..
+
+# 4. Challenge A07
 echo "[+] Recreating A07: Auth Failure..."
 cd "challenges/A07_2025_Authentication_Failures"
 docker-compose up -d --force-recreate --build

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OWASP Lab Bundle</title>
+    <style>
+        body { background: #0d1117; color: #c9d1d9; font-family: monospace; text-align: center; padding: 50px; }
+        h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 20px; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .card { 
+            background: #161b22; border: 1px solid #30363d; padding: 20px; 
+            width: 250px; text-decoration: none; color: #c9d1d9; border-radius: 6px; 
+            transition: 0.2s; display: block;
+        }
+        .card:hover { border-color: #58a6ff; transform: translateY(-3px); background: #21262d; }
+        .port { display: block; margin-top: 10px; color: #58a6ff; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>OWASP Top 10 Lab</h1>
+    <div class="grid">
+        
+        <a href="http://localhost:8001" target="_blank" class="card">
+            <h2>A01: Broken Access</h2>
+            <p>This challenge assumes that admin creds were leadked </p>
+            <span class="port">PORT: 8001</span>
+        </a>
+
+        <a href="http://localhost:8007" target="_blank" class="card">
+            <h2>A07: Auth Failure</h2>
+            <p>Can u hijack the Driver Portal?</p>
+            <span class="port">PORT: 8007</span>
+        </a>
+
+        </div>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; color: #333; }
+nav { background: #2c3e50; padding: 15px; color: white; }
+nav a { color: #ecf0f1; text-decoration: none; margin-right: 20px; font-weight: bold; }
+.container { max-width: 800px; margin: 40px auto; padding: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.wide { max-width: 1000px; }
+h1, h2, h3 { color: #2c3e50; }
+.login-box { width: 300px; margin: 100px auto; padding: 30px; background: white; border-radius: 5px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+input { width: 93%; padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
+button { width: 100%; padding: 10px; background: #3498db; color: white; border: none; cursor: pointer; font-size: 16px; }
+button:hover { background: #2980b9; }
+.alert { background: #e74c3c; color: white; padding: 10px; margin-bottom: 15px; border-radius: 3px; font-size: 14px; }
+.card { background: #fff; border: 1px solid #ddd; padding: 15px; margin-top: 15px; border-radius: 4px; }
+.warning { border-left: 5px solid #e67e22; background: #fffaf0; }
+.small { font-size: 12px; color: #7f8c8d; text-align: center; margin-top: 15px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 10px; border-bottom: 1px solid #eee; text-align: left; }
+.error { color: red; }
+.success-box {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}

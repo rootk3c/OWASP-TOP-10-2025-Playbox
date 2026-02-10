@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: basercms
+    restart: always
+    ports:
+      - "8001:80"
+    # read_only: true  <-- Optional: Enable if you want extreme hardening
+    tmpfs:
+      - /var/www/html/assets/themes:rw,mode=1777,size=50m
+

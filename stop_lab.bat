@@ -1,0 +1,17 @@
+@echo off
+echo [!] STOPPING ALL CONTAINERS...
+
+cd dashboard
+docker-compose down
+cd ..
+
+cd "challenges/A01_2025_Broken_Access_Control"
+docker-compose down
+cd ..\..
+
+cd "challenges/A07_2025_Authentication_Failure"
+docker-compose down
+cd ..\..
+
+echo [-] All stopped.
+pause

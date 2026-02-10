@@ -16,7 +16,7 @@ cd ../..
 
 # 3. Challenge A07
 echo "[+] Recreating A07: Auth Failure..."
-cd "challenges/A07_2025_Authentication_Failure"
+cd "challenges/A07_2025_Authentication_Failures"
 docker-compose up -d --force-recreate --build
 cd ../..
 

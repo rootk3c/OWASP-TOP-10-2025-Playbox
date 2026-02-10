@@ -18,8 +18,8 @@ cd ..\..
 
 REM --- 3. Challenge A07 ---
 echo.
-echo [+] Recreating A07: Auth Failure (Port 8002)...
-cd "challenges/A07_2025_Authentication_Failure"
+echo [+] Recreating A07: Auth Failure (Port 8007)...
+cd "challenges/A07_2025_Authentication_Failures"
 docker-compose up -d --force-recreate --build
 cd ..\..
 

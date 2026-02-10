@@ -34,6 +34,7 @@ According to OWASP, Cryptographic Failures are ranked **#2** on the Top 10 list 
 - **Marriott (2018):** Credit card numbers and passport details of 500 million guests exposed
 
 The consequences include:
+
 - Identity theft and financial fraud
 - Medical data breaches leading to blackmail
 - Corporate espionage and intellectual property theft
@@ -50,17 +51,20 @@ Recover the `super_admin` password (which contains the CTF flag) from the suppos
 ### Step-by-Step Exploitation Guide
 
 #### 1. Access the Vault
+
 - Open **http://localhost:8004** in your browser
 - You'll see a professional-looking interface called "SecureVault Pro"
 - Notice the badge claiming "Military Grade Encryption Active"
 
 #### 2. Observe the Encrypted Passwords
+
 - Look at the "Encrypted Password" column in the table
 - Focus on the `super_admin` user's password
 - Notice anything suspicious about the format?
 - **Key Clue:** The string ends with `==` (equals signs)
 
 #### 3. Recognize the Pattern
+
 - In computer science, `==` at the end is a signature of **Base64 padding**
 - Base64 encoding pads strings to ensure they're multiples of 4 characters
 - This is a dead giveaway that encoding (not encryption) was used!
@@ -68,16 +72,19 @@ Recover the `super_admin` password (which contains the CTF flag) from the suppos
 #### 4. Decode the "Encrypted" Password
 
 **Method 1: Using Terminal (Mac/Linux)**
+
 ```bash
 echo "PASTE_THE_ENCRYPTED_STRING_HERE" | base64 -d
 ```
 
 **Method 2: Using Online Tools**
+
 - Go to https://www.base64decode.org/
 - Paste the encrypted string
 - Click "Decode"
 
 **Method 3: Using Python**
+
 ```python
 import base64
 encoded = "PASTE_HERE"
@@ -86,6 +93,7 @@ print(decoded)
 ```
 
 #### 5. Capture the Flag!
+
 - The decoded output will reveal: `CTF{Encoding_Is_Not_Encryption_A04}`
 - You've successfully demonstrated that Base64 provides **zero security**!
 
@@ -104,6 +112,7 @@ After capturing the flag, click the **"🛡️ Visit Secure Vault (Defense Demo)
 ### What You've Proven
 
 By completing this challenge, you've demonstrated:
+
 - The critical difference between encoding and encryption
 - How to recognize Base64 encoding (look for `=` padding and character set)
 - Why "security by obscurity" fails
@@ -116,6 +125,7 @@ By completing this challenge, you've demonstrated:
 ### Directory: `challenges/A04_Cryptographic_Failures/`
 
 **Configuration Files:**
+
 - **`docker-compose.yml`**: Defines the web service running on port 8004
 - **`Dockerfile`**: Sets up a PHP 8.0 with Apache environment
 
@@ -126,6 +136,7 @@ By completing this challenge, you've demonstrated:
 The main page that demonstrates the cryptographic failure.
 
 **Key Components:**
+
 - **Mock Database:** Array containing 3 users including `super_admin` with the flag
 - **Vulnerable Function:** `secure_encrypt()` that only uses Base64
 - **UI/Styling:** Professional dark theme to make the flaw less obvious
@@ -145,6 +156,7 @@ echo secure_encrypt($user['password']); // Displays encoded password
 ```
 
 **Why This Is Vulnerable:**
+
 1. **No Secret Key Required:** Anyone can decode Base64 without authentication
 2. **Reversible by Design:** Base64 is meant for data transport, not security
 3. **Recognizable Pattern:** The `=` padding makes it obvious
@@ -160,20 +172,21 @@ Educational page showing the **correct** way to protect sensitive data.
 // BEST PRACTICE: Use industry-standard encryption
 function strong_encrypt($data, $key) {
     $cipher = "AES-256-CBC";
-    
+
     // Generate a secure random IV (Initialization Vector)
     $ivlen = openssl_cipher_iv_length($cipher);
     $iv = openssl_random_pseudo_bytes($ivlen);
-    
+
     // Perform actual encryption
     $ciphertext = openssl_encrypt($data, $cipher, $key, 0, $iv);
-    
+
     // Return encrypted data with IV
     return base64_encode($iv . '::' . $ciphertext);
 }
 ```
 
 **Why This IS Secure:**
+
 1. **Secret Key Required:** Without the key, decryption is mathematically impossible
 2. **AES-256-CBC:** Industry standard used by governments and banks
 3. **Random IV:** Ensures same plaintext produces different ciphertext each time
@@ -184,21 +197,22 @@ function strong_encrypt($data, $key) {
 
 ## 📊 Comparison: Base64 vs AES-256
 
-| Feature | Base64 (Vulnerable) | AES-256 (Secure) |
-|---------|---------------------|------------------|
-| **Type** | Encoding | Encryption |
-| **Reversible?** | Yes, by anyone | Only with secret key |
-| **Security Level** | 0% - No protection | Military-grade |
-| **Key Required?** | No | Yes (mandatory) |
-| **Use Case** | Data formatting | Data protection |
-| **Command to Break** | `echo "text" \| base64 -d` | Impossible without key |
-| **Real-World Example** | Email attachments | Banking apps, VPNs |
+| Feature                | Base64 (Vulnerable)        | AES-256 (Secure)       |
+| ---------------------- | -------------------------- | ---------------------- |
+| **Type**               | Encoding                   | Encryption             |
+| **Reversible?**        | Yes, by anyone             | Only with secret key   |
+| **Security Level**     | 0% - No protection         | Military-grade         |
+| **Key Required?**      | No                         | Yes (mandatory)        |
+| **Use Case**           | Data formatting            | Data protection        |
+| **Command to Break**   | `echo "text" \| base64 -d` | Impossible without key |
+| **Real-World Example** | Email attachments          | Banking apps, VPNs     |
 
 ---
 
 ## 🎓 Educational Resources
 
 The **secure.php** page includes:
+
 - Detailed explanation of why AES-256 is secure
 - Side-by-side comparison with Base64
 - Actual code snippets showing proper implementation
@@ -211,23 +225,28 @@ The **secure.php** page includes:
 ## ⚠️ Common Developer Mistakes
 
 ### 1. Confusing Encoding with Encryption
+
 - Using Base64, Hex, or URL encoding for sensitive data
 - Not understanding the fundamental difference
 
 ### 2. Custom Encryption Algorithms
+
 - Writing homemade encryption ("rolling your own crypto")
 - Not using vetted libraries like OpenSSL
 
 ### 3. Weak or Outdated Algorithms
+
 - Using MD5 or SHA-1 for passwords (these are hashes, not encryption)
 - Using DES or RC4 (broken algorithms)
 
 ### 4. Improper Key Management
+
 - Hardcoding keys in source code
 - Not rotating keys regularly
 - Storing keys alongside encrypted data
 
 ### 5. Missing Encryption Entirely
+
 - Storing passwords in plain text
 - Transmitting sensitive data over HTTP
 
@@ -236,25 +255,30 @@ The **secure.php** page includes:
 ## ✅ How to Fix These Issues
 
 ### Use Strong, Standard Algorithms
+
 - **AES-256** for symmetric encryption
 - **RSA-2048+** for asymmetric encryption
 - **Argon2 or bcrypt** for password hashing
 
 ### Proper Key Management
+
 - Store keys in environment variables or key vaults
 - Use different keys for different purposes
 - Implement key rotation policies
 
 ### Use Established Libraries
+
 - OpenSSL, Libsodium, or NaCl
 - Never implement your own cryptographic algorithms
 
 ### Add Multiple Layers
+
 - Encrypt at rest (database)
 - Encrypt in transit (HTTPS/TLS)
 - Encrypt at application level for critical data
 
 ### Regular Security Audits
+
 - Review encryption implementations
 - Keep libraries updated
 - Follow OWASP guidelines
@@ -279,7 +303,7 @@ After completing this challenge, you should understand:
 ✅ Why proper encryption requires a secret key  
 ✅ The importance of using industry-standard cryptographic libraries  
 ✅ How to implement AES-256-CBC encryption in PHP  
-✅ The real-world impact of cryptographic failures  
+✅ The real-world impact of cryptographic failures
 
 ---
 

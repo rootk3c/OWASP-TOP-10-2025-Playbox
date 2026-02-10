@@ -92,320 +92,170 @@ The central menu screen that links to all challenges.
 
 ## 🎯 CTF Challenges
 
-### Challenge 1: A01 - Broken Access Control
+<table>
+<tr>
+<td width="50%" valign="top">
 
-**Port:** 8001 | **Difficulty:** Beginner | **Category:** Authorization Bypass
+### [🔓 A01: Broken Access Control](challenges/A01_2025_Broken_Access_Control/)
 
-<details>
-<summary><strong>📌 Click to Expand: What is This Challenge About?</strong></summary>
+**Status:** ✅ Available | **Port:** 8001 | **Difficulty:** 🟢 Beginner
 
-#### The Scenario
+Exploit missing authorization checks to access admin functionality without credentials. Demonstrates why "security by obscurity" fails.
 
-You've discovered a Content Management System (CMS) called "baserCMS" used by a company to manage their website. The application has an admin dashboard, but no one gave you a username or password.
+**Flag:** Access the admin dashboard  
+**Learn:** Authorization vs Authentication, IDOR vulnerabilities
 
-#### The Vulnerability
+[📖 View Challenge Details](challenges/A01_2025_Broken_Access_Control/)
 
-**Broken Access Control** means the developer forgot to check if users are authorized before showing them sensitive pages. They assumed that "hiding" the admin panel URL would be enough security — it's not.
+</td>
+<td width="50%" valign="top">
 
-**Real-World Analogy:**
-Imagine a bank vault with no lock. The bank owner says "We just won't tell anyone where it is." A criminal who knows where to look can walk right in.
+### 🔒 A02: Cryptographic Failures
 
-#### Why This Matters
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🟡 Intermediate
 
-According to OWASP, Broken Access Control is the **#1** most critical web security risk. Examples include:
+Challenge the weaknesses in cryptographic implementations.
 
-- Accessing another user's bank account by changing the account ID in the URL
-- Viewing employee salary data without proper permissions
-- Modifying or deleting content you shouldn't have access to
-
-</details>
-
-<details>
-<summary><strong>🎮 Click to Expand: How to Complete This Challenge</strong></summary>
-
-#### Your Mission
-
-Access the administrative dashboard without logging in.
-
-#### Step-by-Step Guide
-
-1. Open http://localhost:8001 in your browser
-2. You'll be redirected to `/dashboard.php`
-3. Notice that no login screen appeared — you're already viewing admin content!
-4. Explore the sidebar and click on different pages:
-   - **Site Config**: Contains sensitive settings like admin email addresses
-   - **Posts/Pages**: Allows you to create, edit, or delete website content
-   - **Plugins/Themes**: Could be used to upload malicious code
-   - **User Logs**: Shows activity that should be private
-
-#### What You've Proven
-
-By successfully accessing these pages, you've demonstrated that:
-
-- The application doesn't verify user identity before showing admin pages
-- An attacker could deface the website, steal data, or take over the system
-- "Security by obscurity" (hiding URLs) doesn't work
-
-</details>
-
-<details>
-<summary><strong>📁 Click to Expand: File Structure & Technical Details</strong></summary>
-
-#### Directory: `challenges/A01_2025_Broken_Access_Control/`
-
-**Configuration Files:**
-
-- **`docker-compose.yml`**: Defines the web service running on port 8001
-- **`Dockerfile`**: Sets up a PHP/Apache environment to run the application
-
-**Source Code (`src/`):**
-
-- **`index.php`**: Entry point that redirects to `dashboard.php`
-- **`dashboard.php`**: Main admin interface showing system statistics and activity
-- **`config.php`**: System settings page (email, debug mode, timezone)
-- **`posts.php`**: Interface for managing blog posts
-- **`pages.php`**: Interface for managing static pages
-- **`plugins.php`**: Plugin management system (could be used to upload malware)
-- **`themes.php`**: Theme customization panel
-- **`widgets.php`**: Widget configuration
-- **`cache.php`**: Cache management tools
-- **`logs.php`**: System activity logs
-- **`market.php`**: Marketplace for extensions
-- **`upload.php`**: File upload functionality (high-risk feature)
-
-**Supporting Files:**
-
-- **`includes/header.php`**: Reusable header with navigation sidebar
-- **`includes/footer.php`**: Reusable footer
-- **`includes/sidebar.php`**: Admin navigation menu
-- **`assets/css/theme.css`**: Styling for the dashboard
-
-#### The Security Flaw
-
-None of these PHP files check if a user session exists or if the user has admin privileges. They simply display content to anyone who requests them directly.
-
-**What's Missing:**
-
-```php
-// This code should be at the top of EVERY admin page:
-session_start();
-if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
-    header("Location: login.php");
-    exit();
-}
-```
-
-</details>
+**Flag:** TBD  
+**Learn:** Encryption standards, Key management
 
 ---
 
-### Challenge 2: A04 - Cryptographic Failures
+</td>
+</tr>
 
-**Port:** 8004 | **Difficulty:** Beginner | **Category:** Sensitive Data Exposure
+<tr>
+<td width="50%" valign="top">
 
-#### 📋 Quick Overview
+### 🔒 A03: Injection
 
-This challenge demonstrates the critical difference between **encoding** and **encryption**. You'll audit a "Secure Password Vault" that claims to use "Military Grade Encryption" but actually uses Base64 encoding—providing zero security.
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🟡 Intermediate
 
-#### 🎯 Your Mission
+Exploit SQL, NoSQL, or command injection vulnerabilities.
 
-Decode the supposedly "encrypted" passwords to capture the flag: `CTF{Encoding_Is_Not_Encryption_A04}`
-
-#### 🚀 Quick Start
-
-1. Open **http://localhost:8004**
-2. Notice the "encrypted" passwords ending with `==` (Base64 padding signature)
-3. Copy the super_admin's password
-4. Decode it: `echo "PASTE_HERE" | base64 -d`
-5. Explore the **Secure Vault** demo to see proper AES-256 encryption
-
-#### 🔗 Full Documentation
-
-**For detailed walkthrough, technical details, and learning resources:**
-
-👉 **[Read the Complete A04 Challenge Guide](challenges/A04_Cryptographic_Failures/README.md)**
-
-The dedicated guide includes:
-- Detailed exploitation steps with multiple methods
-- Code analysis of vulnerable vs secure implementations
-- Comparison table: Base64 vs AES-256
-- Common developer mistakes and how to fix them
-- Real-world breach case studies
-- Security best practices checklist
-
-#### 💡 Key Takeaway
-
-**Encoding ≠ Encryption**
-- Base64/Hex/URL encoding: Reversible by anyone (0% security)
-- AES-256/RSA encryption: Requires secret key (military-grade security)
+**Flag:** TBD  
+**Learn:** Input validation, Prepared statements
 
 ---
 
-### Challenge 3: A07 - Authentication Failures
+</td>
+<td width="50%" valign="top">
 
-**Port:** 8007 | **Difficulty:** Intermediate | **Category:** Weak Authentication
+### [🔐 A04: Cryptographic Failures](challenges/A04_Cryptographic_Failures/)
 
-<details>
-<summary><strong>📌 Click to Expand: What is This Challenge About?</strong></summary>
+**Status:** ✅ Available | **Port:** 8004 | **Difficulty:** 🟢 Beginner
 
-#### The Scenario
+Crack a "Military Grade Encrypted" vault that actually uses Base64 encoding. Learn the critical difference between encoding and encryption.
 
-You've found a logistics company's "Driver Portal" — a web application used by delivery drivers and dispatchers to track shipments and manage routes. There's a login page, but you don't have valid credentials.
+**Flag:** `CTF{Encoding_Is_Not_Encryption_A04}`  
+**Learn:** Encoding vs Encryption, AES-256, Proper key management
 
-#### The Vulnerability
+[📖 View Full Challenge Guide](challenges/A04_Cryptographic_Failures/README.md)
 
-**Authentication Failures** occur when login systems have weaknesses that allow attackers to bypass or crack them. This includes:
+</td>
+</tr>
 
-- Weak password requirements (allowing "password123")
-- Hardcoded credentials left in the code by developers
-- Broken password reset mechanisms
-- Use of insecure hashing algorithms (like MD5) that can be cracked
-- Missing account lockout after multiple failed attempts
+<tr>
+<td width="50%" valign="top">
 
-**Real-World Analogy:**
-Imagine a door with a cheap lock that can be picked in 30 seconds, or worse, a door where the key is hidden under the doormat with a note saying "Spare Key."
+### 🔒 A05: Security Misconfiguration
 
-#### Why This Matters
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🟡 Intermediate
 
-Authentication failures are ranked **#7** on the OWASP Top 10. Real-world consequences include:
+Discover and exploit common misconfigurations in web applications.
 
-- Account takeovers leading to identity theft
-- Unauthorized access to customer data
-- Financial fraud through compromised payment systems
-- Corporate espionage via breached employee accounts
+**Flag:** TBD  
+**Learn:** Secure defaults, Configuration hardening
 
-</details>
+---
 
-<details>
-<summary><strong>🎮 Click to Expand: How to Complete This Challenge</strong></summary>
+</td>
+<td width="50%" valign="top">
 
-#### Your Mission
+### 🔒 A06: Vulnerable Components
 
-Gain access to the "Driver Dashboard" or "Dispatcher Admin Panel" by exploiting weak authentication.
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🔴 Advanced
 
-#### Hints & Strategy
+Identify and exploit known vulnerabilities in third-party components.
 
-1. Open http://localhost:8007 in your browser
-2. Explore the public pages (Home, Track Package, Support) for clues:
-   - Note the email format shown in the Support page
-   - Look for any information about usernames or system details
-3. Navigate to the **Driver Login** page
-4. Try common username/password combinations:
-   - `admin` / `admin`
-   - `driver` / `drive123`
-   - `admin` / `password`
-   - Email addresses with weak passwords
-5. If simple guessing doesn't work, consider:
-   - Inspecting the source code of the login page
-   - Looking for comments or hidden fields
-   - Investigating if the system uses weak hashing (MD5)
+**Flag:** TBD  
+**Learn:** Dependency scanning, CVE databases
 
-#### Advanced Technique
+---
 
-This challenge may involve a **Type Juggling** or **Magic Hash** exploit. In PHP, weak comparison operators (`==`) can be tricked. For example:
+</td>
+</tr>
 
-- `md5("240610708") == "0e462097..."` (looks like scientific notation)
-- PHP treats both sides as `0 == 0`, which is TRUE
+<tr>
+<td width="50%" valign="top">
 
-#### What Success Looks Like
+### [🔑 A07: Authentication Failures](challenges/A07_2025_Authentication_Failures/)
 
-You'll be redirected to `/admin/dashboard.php` where you can see confidential shipment data, driver information, and dispatch controls.
+**Status:** ✅ Available | **Port:** 8007 | **Difficulty:** 🟡 Intermediate
 
-</details>
+Bypass weak authentication mechanisms using hardcoded credentials, weak hashing (MD5), and PHP type juggling exploits.
 
-<details>
-<summary><strong>📁 Click to Expand: File Structure & Technical Details</strong></summary>
+**Flag:** Access the Driver Admin Dashboard  
+**Learn:** Secure password hashing, Type juggling, Rate limiting
 
-#### Directory: `challenges/A07_2025_Authentication_Failures/`
+[📖 View Challenge Details](challenges/A07_2025_Authentication_Failures/)
 
-**Configuration Files:**
+</td>
+<td width="50%" valign="top">
 
-- **`docker-compose.yml`**: Defines the web service running on port 8007
-- **`Dockerfile`**: Sets up a PHP/Apache environment
+### 🔒 A08: Software & Data Integrity
 
-**Source Code (`src/`):**
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🔴 Advanced
 
-**Public-Facing Files:**
+Exploit insecure deserialization and supply chain vulnerabilities.
 
-- **`index.php`**: Homepage with company information and announcements
-- **`track.php`**: Package tracking feature (public access)
-- **`contact.php`**: Support contact form
-- **`nav.php`**: Navigation bar component
+**Flag:** TBD  
+**Learn:** Object serialization, Digital signatures
 
-**Authentication System:**
+---
 
-- **`login.php`**: The vulnerable login handler
-  - Contains hardcoded credentials for testing
-  - Uses weak MD5 hashing for password comparison
-  - Vulnerable to type juggling attacks
-  - Missing rate limiting (allows unlimited login attempts)
+</td>
+</tr>
 
-**Protected Area:**
+<tr>
+<td width="50%" valign="top">
 
-- **`admin/dashboard.php`**: Target page showing:
-  - Active shipments and their locations
-  - Driver assignments and schedules
-  - Dispatch communication tools
-  - Sensitive company data
+### 🔒 A09: Logging & Monitoring Failures
 
-**Configuration & Utilities:**
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🟡 Intermediate
 
-- **`includes/config.php`**: Application settings including:
-  - `APP_NAME`: Application title
-  - `VERSION`: System version number
-  - `ADMIN_RECOVERY_HASH`: MD5 hash for admin password (vulnerable!)
-- **`includes/db.php`**: Database connection handler
-- **`includes/utils.php`**: Helper functions like `sanitize()` for input cleaning
+Demonstrate attacks that go undetected due to insufficient logging.
 
-**Styling:**
+**Flag:** TBD  
+**Learn:** Security monitoring, Incident detection
 
-- **`assets/style.css`**: Visual styling for the portal
+---
 
-#### The Security Flaw
+</td>
+<td width="50%" valign="top">
 
-The `login.php` file contains multiple weaknesses:
+### 🔒 A10: Server-Side Request Forgery
 
-1. **Hardcoded Credentials:**
+**Status:** 🚧 Coming Soon | **Port:** TBD | **Difficulty:** 🔴 Advanced
 
-```php
-if ($username === 'driver' && $password === 'drive123') {
-    // Credentials visible in source code
-}
-```
+Manipulate server-side requests to access internal resources.
 
-2. **Weak Hashing:**
+**Flag:** TBD  
+**Learn:** URL validation, Network segmentation
 
-```php
-$input_hash = md5($password);
-if ($input_hash == ADMIN_RECOVERY_HASH) {
-    // MD5 is broken and can be cracked
-    // Using == instead of === allows type juggling
-}
-```
+---
 
-3. **No Account Lockout:**
+</td>
+</tr>
+</table>
 
-- Unlimited login attempts allowed
-- Enables brute force attacks
+### 🎮 Quick Access
 
-**How It Should Be Done:**
-
-```php
-// Use modern password hashing
-$hashed = password_hash($password, PASSWORD_ARGON2ID);
-
-// Verify with secure comparison
-if (password_verify($input, $hashed)) {
-    // Grant access
-}
-
-// Implement rate limiting
-if (login_attempts > 5) {
-    sleep(5); // Slow down attacker
-}
-```
-
-</details>
+| Challenge | Port | Status | Difficulty | Direct Link |
+|-----------|------|--------|------------|-------------|
+| **A01: Broken Access Control** | 8001 | ✅ Live | 🟢 Beginner | http://localhost:8001 |
+| **A04: Cryptographic Failures** | 8004 | ✅ Live | 🟢 Beginner | http://localhost:8004 |
+| **A07: Authentication Failures** | 8007 | ✅ Live | 🟡 Intermediate | http://localhost:8007 |
 
 ---
 
@@ -448,20 +298,23 @@ If you see "This site can't be reached" for any challenge:
 2. If it's missing or exited, manually start it:
 
    **For A01 (Port 8001):**
+
    ```bash
    cd challenges/A01_2025_Broken_Access_Control
    docker-compose up -d --build --force-recreate
    cd ../..
    ```
-   
+
    **For A04 (Port 8004):**
+
    ```bash
    cd challenges/A04_Cryptographic_Failures
    docker-compose up -d --build --force-recreate
    cd ../..
    ```
-   
+
    **For A07 (Port 8007):**
+
    ```bash
    cd challenges/A07_2025_Authentication_Failures
    docker-compose up -d --build --force-recreate

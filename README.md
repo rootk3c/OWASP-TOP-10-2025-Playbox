@@ -26,7 +26,7 @@ Think of this as a "hacking simulator" or video game with different levels. Each
 - [Docker](https://www.docker.com/) & Docker Compose
 - A terminal (Bash/Zsh recommended)
 
-### Quick Start
+### Quick Start - Linux/Mac User's
 
 1. **Navigate to the Project Folder**:
    Open your terminal and navigate to the project root directory:
@@ -59,10 +59,7 @@ Think of this as a "hacking simulator" or video game with different levels. Each
 
    👉 **http://localhost:8000**
 
-   From here, you can click on the challenge cards to access:
-   - **A01: Broken Access Control** → http://localhost:8001
-   - **A04: Cryptographic Failures** → http://localhost:8004
-   - **A07: Authentication Failures** → http://localhost:8007
+   From here, you can click on the challenge cards to access.
 
 5. **Stop the Lab**:
    When you're done, shut down all services and clean up:
@@ -72,6 +69,14 @@ Think of this as a "hacking simulator" or video game with different levels. Each
    _This will stop all Docker containers and free up system resources._
 
 ---
+
+### Quick Start - Window's User
+
+1. **Start the Lab**
+   Click on the start_lab.bat file.
+
+2. **Stop the Lab**
+   Click on stop_lab.bat file.
 
 ## 🏗 Project Architecture
 

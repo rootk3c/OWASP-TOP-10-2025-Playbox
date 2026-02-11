@@ -369,16 +369,6 @@ This project is for **educational purposes only**.
 
 ---
 
-## 👨‍💻 Contributing
-
-Found a bug or want to add more challenges? Contributions are welcome! Please ensure any new vulnerabilities are:
-
-- Well-documented
-- Isolated in containers
-- Based on real-world vulnerability patterns
-
----
-
 ## 📜 License
 
 This project is released for educational use. All vulnerabilities are intentionally created for learning purposes and do not represent real applications.

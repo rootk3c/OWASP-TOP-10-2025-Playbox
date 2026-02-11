@@ -24,7 +24,7 @@ cd ../..
 
 echo ""
 echo "[+] Recreating A04 (Port 8004)..."
-cd "challenges/A04_Cryptographic_Failures"
+cd "challenges/A04_2025_Cryptographic_Failures"
 docker-compose up -d --force-recreate --build
 cd ../..
 

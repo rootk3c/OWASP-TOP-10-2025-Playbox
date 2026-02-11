@@ -16,14 +16,27 @@ cd "challenges/A01_2025_Broken_Access_Control"
 docker-compose up -d --force-recreate --build
 cd ..\..
 
-REM --- 3. Challenge A04 ---
+REM --- 3. Challenge A02 ---
 echo.
-echo [+] Recreating A04: Crypto Failures (Port 8004)...
-cd "challenges/A04_Cryptographic_Failures"
+echo [+] Recreating A02: Security Misconfigurations (Port 8002)...
+cd "challenges/A02_2025_Security_Misconfigurations"
 docker-compose up -d --force-recreate --build
 cd ..\..
 
-REM --- 4. Challenge A07 ---
+echo.
+echo [+] Recreating A02: Security Misconfigurations (Port 8004)...
+cd "challenges/A04_2025_Cryptographic_Failures"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+REM --- 3. Challenge A05 ---
+echo.
+echo [+] Recreating A05: Injections (Port 8005)...
+cd "challenges/A05_2025_Injection"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+REM --- 3. Challenge A07 ---
 echo.
 echo [+] Recreating A07: Auth Failure (Port 8007)...
 cd "challenges/A07_2025_Authentication_Failures"
@@ -32,7 +45,8 @@ cd ..\..
 
 echo.
 echo ====================================================
-echo  SYSTEMS RECREATED & ONLINE
+echo  SYSTEMS RECREATED AND ONLINE
 echo  Dashboard: http://localhost:8000
 echo ====================================================
 pause
+

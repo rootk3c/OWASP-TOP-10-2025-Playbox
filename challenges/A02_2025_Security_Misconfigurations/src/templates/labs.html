@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="alert alert-info">
+            <i class="bi bi-shield-lock"></i> <strong>HIPAA Notice:</strong> These results are private and intended only for the patient.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header bg-transparent d-flex justify-content-between">
+                <strong>Lipid Panel</strong>
+                <span class="text-muted">Oct 10, 2025</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="small text-muted">Total Cholesterol</label>
+                    <div class="d-flex justify-content-between">
+                        <span>185 mg/dL</span>
+                        <span class="text-success"><i class="bi bi-check-circle"></i> Normal</span>
+                    </div>
+                    <div class="progress" style="height: 5px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 40%"></div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="small text-muted">HDL (Good)</label>
+                    <div class="d-flex justify-content-between">
+                        <span>55 mg/dL</span>
+                        <span class="text-success">Normal</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="small text-muted">LDL (Bad)</label>
+                    <div class="d-flex justify-content-between">
+                        <span>110 mg/dL</span>
+                        <span class="text-warning">Borderline</span>
+                    </div>
+                    <div class="progress" style="height: 5px;">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent">
+                <button class="btn btn-sm btn-outline-primary w-100">Download PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+             <div class="card-header bg-transparent d-flex justify-content-between">
+                <strong>Complete Blood Count (CBC)</strong>
+                <span class="text-muted">Aug 01, 2024</span>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        White Blood Cells (WBC)
+                        <span class="badge bg-primary rounded-pill">7.5</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Red Blood Cells (RBC)
+                        <span class="badge bg-primary rounded-pill">4.92</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Hemoglobin
+                        <span class="badge bg-primary rounded-pill">14.0</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Platelets
+                        <span class="badge bg-primary rounded-pill">250</span>
+                    </li>
+                </ul>
+            </div>
+             <div class="card-footer bg-transparent">
+                <button class="btn btn-sm btn-outline-primary w-100">Download PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

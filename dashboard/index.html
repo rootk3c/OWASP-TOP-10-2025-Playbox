@@ -1,72 +1,55 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>OWASP Lab Bundle</title>
     <style>
-      body {
-        background: #0d1117;
-        color: #c9d1d9;
-        font-family: monospace;
-        text-align: center;
-        padding: 50px;
-      }
-      h1 {
-        color: #58a6ff;
-        border-bottom: 1px solid #30363d;
-        padding-bottom: 20px;
-      }
-      .grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        max-width: 1000px;
-        margin: 0 auto;
-      }
-      .card {
-        background: #161b22;
-        border: 1px solid #30363d;
-        padding: 20px;
-        width: 250px;
-        text-decoration: none;
-        color: #c9d1d9;
-        border-radius: 6px;
-        transition: 0.2s;
-        display: block;
-      }
-      .card:hover {
-        border-color: #58a6ff;
-        transform: translateY(-3px);
-        background: #21262d;
-      }
-      .port {
-        display: block;
-        margin-top: 10px;
-        color: #58a6ff;
-        font-weight: bold;
-      }
+        body { background: #0d1117; color: #c9d1d9; font-family: monospace; text-align: center; padding: 50px; }
+        h1 { color: #58a6ff; border-bottom: 1px solid #30363d; padding-bottom: 20px; }
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .card { 
+            background: #161b22; border: 1px solid #30363d; padding: 20px; 
+            width: 250px; text-decoration: none; color: #c9d1d9; border-radius: 6px; 
+            transition: 0.2s; display: block;
+        }
+        .card:hover { border-color: #58a6ff; transform: translateY(-3px); background: #21262d; }
+        .port { display: block; margin-top: 10px; color: #58a6ff; font-weight: bold; }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <h1>OWASP Top 10 Lab</h1>
     <div class="grid">
-      <a href="http://localhost:8001" target="_blank" class="card">
-        <h2>A01: Broken Access</h2>
-        <p>This challenge assumes that admin creds were leadked</p>
-        <span class="port">PORT: 8001</span>
-      </a>
+        
+        <a href="http://localhost:8001" target="_blank" class="card">
+            <h2>A01: Broken Access</h2>
+            <p>This challenge assumes that admin creds were leaked during a phishing credentials, can u get root? </p>
+            <span class="port">PORT: 8001</span>
+        </a>
 
-      <a href="http://localhost:8004" target="_blank" class="card">
-        <h2>A04: Crypto Failures</h2>
-        <p>Can you crack the "Military Grade" encryption?</p>
-        <span class="port">PORT: 8004</span>
-      </a>
+        <a href="http://localhost:8002" target="_blank" class="card">
+            <h2>A02: Security Misconfigurations</h2>
+            <p>Medical Bills are through the roof but that is not the main problem right now. </p>
+            <span class="port">PORT: 8002</span>
+        </a>
 
-      <a href="http://localhost:8007" target="_blank" class="card">
-        <h2>A07: Auth Failure</h2>
-        <p>Can u hijack the Driver Portal?</p>
-        <span class="port">PORT: 8007</span>
-      </a>
-    </div>
-  </body>
+        <a href="http://localhost:8004" target="_blank" class="card">
+            <h2>A04: Cryptographic Failures</h2>
+            <p>This is a cryptic message. </p>
+            <span class="port">PORT: 8004</span>
+        </a>
+
+        <a href="http://localhost:8005" target="_blank" class="card">
+            <h2>A05: Injection</h2>
+            <p>Move files with MOVEit your secure, managed file exchanger for the modern enterprise. We are impenetrable.</p>
+            <span class="port">PORT: 8005</span>
+        </a>
+
+        <a href="http://localhost:8007" target="_blank" class="card">
+            <h2>A07: Auth Failure</h2>
+            <p>Can u hijack the Driver Portal?</p>
+            <span class="port">PORT: 8007</span>
+        </a>
+
+        </div>
+</body>
 </html>
+

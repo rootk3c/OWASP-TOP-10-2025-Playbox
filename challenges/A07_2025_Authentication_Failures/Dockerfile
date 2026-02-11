@@ -18,3 +18,4 @@ EXPOSE 80
 # 6. Start the lightweight PHP Built-in Server
 # (Replaces the heavy Apache service)
 CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html"]
+

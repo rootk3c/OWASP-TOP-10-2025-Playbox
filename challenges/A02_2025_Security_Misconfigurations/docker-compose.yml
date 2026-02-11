@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./src
+    ports:
+      - "8002:5000"  # Expose on port 80 like a real website
+    container_name: medinexus_portal
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 100M # Restricted RAM
+

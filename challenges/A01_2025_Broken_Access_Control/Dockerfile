@@ -26,3 +26,4 @@ EXPOSE 80
 
 # This command starts the server on Port 80
 CMD ["php", "-S", "0.0.0.0:80", "-t", "/var/www/html"]
+

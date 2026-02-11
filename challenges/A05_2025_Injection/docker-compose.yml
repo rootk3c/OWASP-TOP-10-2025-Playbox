@@ -1,0 +1,20 @@
+services:
+  web:
+    build: ./www
+    ports:
+      - "8005:80"
+    read_only: true
+    # THIS IS THE FIX: Define a writable area for the DB and its journals
+    volumes:
+      - ctf_db_data:/var/www/html
+    tmpfs:
+      - /tmp
+      - /run
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+
+# Define the volume at the bottom
+volumes:
+  ctf_db_data:

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card p-4">
+    <h5>Find a Specialist</h5>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search for doctors by name or specialty...">
+        <button class="btn btn-primary">Search</button>
+    </div>
+    
+    <div id="doctor-list" class="row">
+        <div class="col-12 text-center text-muted">Loading directory...</div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // MICROSOFT POWER PAGES STYLE API CALL
+        // Note the '$select' parameter. This implies OData.
+        // The developer is asking ONLY for safe fields.
+        const apiUrl = "/_api/data/v9.2/contacts?$select=firstname,lastname,jobtitle,specialty,email";
+        
+        fetch(apiUrl)
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('doctor-list');
+                container.innerHTML = '';
+                
+                data.value.forEach(doc => {
+                    // Only show if they have a job title (filtering out patients in JS - bad practice!)
+                    if(doc.jobtitle) {
+                        const html = `
+                        <div class="col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">${doc.firstname} ${doc.lastname}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${doc.jobtitle}</h6>
+                                    <p class="card-text"><small>${doc.specialty}</small></p>
+                                    <a href="mailto:${doc.email}" class="btn btn-sm btn-outline-primary">Contact</a>
+                                </div>
+                            </div>
+                        </div>`;
+                        container.innerHTML += html;
+                    }
+                });
+            })
+            .catch(err => console.error(err));
+    });
+</script>
+{% endblock %}

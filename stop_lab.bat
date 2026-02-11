@@ -9,7 +9,15 @@ cd "challenges/A01_2025_Broken_Access_Control"
 docker-compose down
 cd ..\..
 
-cd "challenges/A04_Cryptographic_Failures"
+cd "challenges/A02_2025_Security_Misconfigurations"
+docker-compose down
+cd ..\..
+
+cd "challenges/A04_2025_Cryptographic_Failures"
+docker-compose down
+cd ..\..
+
+cd "challenges/A05_2025_Injection"
 docker-compose down
 cd ..\..
 

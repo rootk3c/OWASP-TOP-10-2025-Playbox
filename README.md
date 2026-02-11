@@ -249,16 +249,6 @@ Manipulate server-side requests to access internal resources.
 </tr>
 </table>
 
-### 🎮 Quick Access
-
-| Challenge | Port | Status | Difficulty | Direct Link |
-|-----------|------|--------|------------|-------------|
-| **A01: Broken Access Control** | 8001 | ✅ Live | 🟢 Beginner | http://localhost:8001 |
-| **A04: Cryptographic Failures** | 8004 | ✅ Live | 🟢 Beginner | http://localhost:8004 |
-| **A07: Authentication Failures** | 8007 | ✅ Live | 🟡 Intermediate | http://localhost:8007 |
-
----
-
 ## 🔍 Understanding the Impact
 
 Each vulnerability demonstrated here has caused real data breaches:

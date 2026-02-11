@@ -7,26 +7,24 @@ class SessionManager {
     }
 
     public function validate_session($sess_token) {
-        // VULNERABLE: Direct concatenation
-        $sql = "SELECT * FROM active_sessions WHERE session_id = '" . $sess_token . "'";
+        // REAL-WORLD SCENARIO: The developer wants to update the 'last_active' 
+        // timestamp every time a session is checked. 
+        // They use exec() because they aren't fetching rows, just updating.
+        $sql = "UPDATE active_sessions SET last_seen = datetime('now') WHERE session_id = '" . $sess_token . "'";
         
         try {
-            // Execute the query
-            $stmt = $this->db->query($sql);
-            if ($stmt) {
-                $result = $stmt->fetch();
-                if ($result) {
-                    return true;
-                }
-            }
+            // exec() is the "Holy Grail" for SQLite RCE because it 
+            // natively supports stacked queries (semicolons).
+            $affected = $this->db->exec($sql);
+
+            // If the UPDATE modified at least 1 row, it's a valid session.
+            // If it modified 0 rows (like when you run an ATTACH command), 
+            // it returns 0, which PHP treats as false.
+            return ($affected > 0);
+            
         } catch (Exception $e) {
-            // In a real CTF, you might hide this. 
-            // For learning, seeing the error helps debug the payload.
+            // Syntax errors (like unclosed quotes) land here.
             return false;
         }
-        return false;
     }
 }
-?>
-
-

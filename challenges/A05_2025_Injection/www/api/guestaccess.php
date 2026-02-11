@@ -3,28 +3,16 @@ require_once('../config.php');
 require_once('../classes/Session.php');
 
 header('Content-Type: application/json');
-
-// Simulate headers used in enterprise apps
-$headers = getallheaders();
-$session_token = "";
-
-// Look for token in Header or POST body
-if (isset($headers['X-SiLock-Session'])) {
-    $session_token = $headers['X-SiLock-Session'];
-} elseif (isset($_POST['transaction_id'])) {
-    $session_token = $_POST['transaction_id'];
-} else {
-    echo json_encode(["status" => "error", "message" => "Missing Transaction ID"]);
-    exit;
-}
+$input = $_POST['transaction_id'] ?? '';
 
 $sessionMgr = new SessionManager($conn);
-$isValid = $sessionMgr->validate_session($session_token);
 
-if ($isValid) {
-    echo json_encode(["status" => "success", "action" => "download_manifest"]);
+if ($sessionMgr->validate_session($input)) {
+    // Returns success only if a real session was updated
+    echo json_encode(["status" => "success", "message" => "Session Active"]);
 } else {
+    // Returns error for fake IDs, SQL syntax errors, OR successful RCE payloads
+    // (Since ATTACH doesn't "update" a row in the active_sessions table)
+    http_response_code(403);
     echo json_encode(["status" => "error", "message" => "Invalid Session"]);
 }
-?>
-

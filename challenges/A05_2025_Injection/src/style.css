@@ -1,0 +1,7 @@
+body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; display: flex; justify-content: center; padding-top: 50px; }
+.container { background: white; padding: 30px; border-radius: 8px; width: 500px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.card { background: #fafafa; border: 1px solid #ddd; padding: 15px; margin: 15px 0; border-radius: 4px; }
+input, button { width: 100%; padding: 10px; margin: 5px 0; box-sizing: border-box; }
+button { background: #007bff; color: white; border: none; cursor: pointer; }
+h2 { margin-top: 0; color: #333; }
+.result { background: #e9ecef; padding: 10px; margin-bottom: 10px; border-left: 4px solid #007bff; }

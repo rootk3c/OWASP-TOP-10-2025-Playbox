@@ -18,7 +18,7 @@ docker-compose down
 cd ..\..
 
 cd "challenges/A05_2025_Injection"
-docker-compose down -v
+docker-compose down -v 
 cd ..\..
 
 cd "challenges/A07_2025_Authentication_Failures"

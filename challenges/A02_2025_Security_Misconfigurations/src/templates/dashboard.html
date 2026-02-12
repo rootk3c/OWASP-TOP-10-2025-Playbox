@@ -1,30 +1,71 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 {% block content %}
 <div class="row">
-    <div class="col-md-4">
-        <div class="card p-3 text-center">
-            <h1 class="text-primary"><i class="bi bi-heart-pulse"></i></h1>
-            <h5>Vitals</h5>
-            <p class="text-muted">BP: 120/80 | HR: 72</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card p-3 text-center">
-            <h1 class="text-warning"><i class="bi bi-calendar-check"></i></h1>
-            <h5>Next Visit</h5>
-            <p class="text-muted">Oct 12, 2025 - Dr. House</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="card p-3 text-center">
-            <h1 class="text-success"><i class="bi bi-envelope"></i></h1>
-            <h5>Messages</h5>
-            <p class="text-muted">0 New Messages</p>
+    <div class="col-md-12">
+        <h2>Welcome, {{ name }}</h2>
+        <hr>
+        <div class="card mb-4">
+            <div class="card-header">
+                My Health Records
+            </div>
+            <div class="card-body">
+                <div id="loading" class="text-center">
+                    <div class="spinner-border text-primary" role="status"></div>
+                    <p>Fetching secure records...</p>
+                </div>
+                <div id="records-container" style="display:none;">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>NHS Number</th>
+                                <th>Condition</th>
+                                <th>Clinical Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="records-body">
+                            </tbody>
+                    </table>
+                </div>
+                <div id="error-msg" class="alert alert-danger" style="display:none;"></div>
+            </div>
         </div>
     </div>
 </div>
-<div class="card p-4">
-    <h5><i class="bi bi-info-circle"></i> Welcome Back, {{ session.name }}</h5>
-    <p>Please review your latest lab results from the 'Lab Results' tab. If you need to schedule a follow-up, use the directory to find your specialist.</p>
-</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // The secure application requests ONLY the current user's data
+        const currentUserId = "{{ user_id }}";
+        const apiUrl = `/_api/patients?filter=id eq '${currentUserId}'`;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to fetch records");
+                return response.json();
+            })
+            .then(data => {
+                const tbody = document.getElementById('records-body');
+                if (data.value && data.value.length > 0) {
+                    data.value.forEach(record => {
+                        const row = `<tr>
+                            <td>${record.nhs_number}</td>
+                            <td>${record.condition}</td>
+                            <td>${record.notes}</td>
+                        </tr>`;
+                        tbody.innerHTML += row;
+                    });
+                } else {
+                    tbody.innerHTML = "<tr><td colspan='3'>No records found.</td></tr>";
+                }
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('records-container').style.display = 'block';
+            })
+            .catch(err => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error-msg').innerText = "Error loading data. Please contact IT support.";
+                document.getElementById('error-msg').style.display = 'block';
+            });
+    });
+</script>
 {% endblock %}
+

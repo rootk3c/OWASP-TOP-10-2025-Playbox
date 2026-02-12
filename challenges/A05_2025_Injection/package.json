@@ -1,0 +1,17 @@
+{
+  "name": "ctf-moveit-sim",
+  "version": "1.0.0",
+  "description": "Realistic MOVEit Transfer CTF Simulation",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "sqlite3": "^5.1.7"
+  }
+}

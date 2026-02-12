@@ -1,7 +1,21 @@
-version: '3'
+version: '3.8'
 services:
-  web:
-    # Build context is the current directory (.)
+  app:
     build: .
     ports:
-      - "8005:80"
+      - "8005:3000"
+    environment:
+      - VULN_MODE=true
+      - NODE_OPTIONS=--max-old-space-size=50   # ← key for low RAM
+    volumes:
+      - ./uploads:/app/uploads
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 100M          # hard cap
+        reservations:
+          cpus: '0.2'
+          memory: 40M          # soft floor
+    restart: always            # auto-restart on crash/reboot
+    container_name: moveit_ctf

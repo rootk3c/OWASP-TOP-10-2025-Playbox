@@ -1,0 +1,6 @@
+[2024-02-12 08:30:10] INFO: Starting migration script v2.1.
+[2024-02-12 08:30:11] INFO: User 'john.doe@nhs.net' migrated successfully.
+[2024-02-12 08:30:15] INFO: Creating temporary admin for validation...
+[2024-02-12 08:30:15] SUCCESS: User 'dev.admin@nhs-test.local' created.
+[2024-02-12 08:30:15] DEBUG: Temp Password: 'DevPass!2024' (Expires in 24h).
+[2024-02-12 08:30:20] TODO: REMOVE THIS LOG FILE BEFORE PROD!!

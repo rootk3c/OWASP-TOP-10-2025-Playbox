@@ -1,15 +1,15 @@
-version: '3.8'
-
+version: '3'
 services:
   web:
-    build: ./src
+    build: .
     ports:
-      - "8002:5000"  # Expose on port 80 like a real website
-    container_name: medinexus_portal
-    restart: always
+      - "8002:5000"
     deploy:
       resources:
         limits:
+          memory: 70M  # Strict Limit
           cpus: '0.5'
-          memory: 100M # Restricted RAM
+    restart: always
+    container_name: nhs_portal_ctf
 
+    

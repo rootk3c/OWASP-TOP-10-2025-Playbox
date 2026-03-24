@@ -5,10 +5,6 @@ cd dashboard
 docker-compose down
 cd ..
 
-cd "challenges/A08_2025_Software_and_Data_Integrity_Failures"
-docker-compose down
-cd ..\..
-
 cd "challenges/A02_2025_Security_Misconfigurations"
 docker-compose down
 cd ..\..
@@ -22,6 +18,10 @@ docker-compose down -v
 cd ..\..
 
 cd "challenges/A07_2025_Authentication_Failures"
+docker-compose down
+cd ..\..
+
+cd "challenges/A08_2025_Software_and_Data_Integrity_Failures"
 docker-compose down
 cd ..\..
 

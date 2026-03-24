@@ -5,7 +5,7 @@ cd dashboard
 docker-compose down
 cd ..
 
-cd "challenges/A01_2025_Broken_Access_Control"
+cd "challenges/A08_2025_Software_and_Data_Integrity_Failures"
 docker-compose down
 cd ..\..
 

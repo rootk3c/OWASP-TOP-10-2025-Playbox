@@ -10,11 +10,6 @@ docker-compose up -d --force-recreate --build
 cd ..
 
 REM --- 2. Challenge A01 ---
-echo.
-echo [+] Recreating A01: Broken Access (Port 8001)...
-cd "challenges/A01_2025_Broken_Access_Control"
-docker-compose up -d --force-recreate --build
-cd ..\..
 
 REM --- 3. Challenge A02 ---
 echo.
@@ -40,6 +35,12 @@ REM --- 3. Challenge A07 ---
 echo.
 echo [+] Recreating A07: Auth Failure (Port 8007)...
 cd "challenges/A07_2025_Authentication_Failures"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+echo.
+echo [+] Recreating A08: Software_and_Data_Integrity_Failures (Port 8008)...
+cd "challenges/A08_2025_Software_and_Data_Integrity_Failures"
 docker-compose up -d --force-recreate --build
 cd ..\..
 

@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  altus-app:
+    build: .
+    # Maps Host Port (8001) to Container Port (8006)
+    ports:
+      - "8001:8006"
+    restart: always
+    environment:
+      - NODE_ENV=production

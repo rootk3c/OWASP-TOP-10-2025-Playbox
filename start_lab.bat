@@ -9,7 +9,12 @@ cd dashboard
 docker-compose up -d --force-recreate --build
 cd ..
 
-REM --- 2. Challenge A01 ---
+REM --- 2. Challenge A01 + A06 ---
+echo.
+echo [+] Recreating A01_A06_Broken_Access (Port 8001)...
+cd "challenges/A01_A06_Broken_Access+Insecure_Design"
+docker-compose up -d --force-recreate --build
+cd ..\..
 
 REM --- 3. Challenge A02 ---
 echo.

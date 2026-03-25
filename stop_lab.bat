@@ -5,6 +5,11 @@ cd dashboard
 docker-compose down
 cd ..
 
+cd "challenges/A01_A06_Broken_Access+Insecure_Design"
+docker-compose down
+cd ..\..
+
+
 cd "challenges/A02_2025_Security_Misconfigurations"
 docker-compose down
 cd ..\..

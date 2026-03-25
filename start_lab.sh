@@ -13,6 +13,12 @@ cd ..
 
 echo ""
 echo "[+] Recreating A02 (Port 8002)..."
+cd "challenges/A01_A06_Broken_Access+Insecure_Design"
+docker-compose up -d --force-recreate --build
+cd ../..
+
+echo ""
+echo "[+] Recreating A02 (Port 8002)..."
 cd "challenges/A02_2025_Security_Misconfigurations"
 docker-compose up -d --force-recreate --build
 cd ../..

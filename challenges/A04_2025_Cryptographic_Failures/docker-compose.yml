@@ -1,8 +1,22 @@
-version: "3"
 services:
-  web:
+  aegis-challenge:
     build: .
-    container_name: a04-crypto
-    restart: always
+    container_name: aegis-ctf-container
     ports:
-      - "8004:80"
+      - "8004:8004"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'        # Restricts the container to 50% of a single CPU core
+          memory: 128M       # Hard cap on memory to keep it hyper-efficient
+    environment:
+      - FLASK_ENV=production
+    networks:
+      - ctf_network
+
+networks:
+  ctf_network:
+    driver: bridge
+
+    

@@ -134,14 +134,14 @@ app.post('/api/request-access', (req, res) => {
 });
 
 app.get('/webmail', (req, res) => {
-    let inboxHtml = '<div class="exploit-server"><h2>[Attacker Webmail Client]</h2><hr>';
+    let inboxHtml = '<div class="exploit-server"><h2>[External Webmail Client]</h2><hr>';
     if (exploitServerInbox.length === 0) {
         inboxHtml += '<p>Listening for intercepted emails...</p>';
     } else {
         exploitServerInbox.forEach(email => {
             inboxHtml += `
                 <p><strong>[${email.time}] Intercepted target:</strong> ${email.to}<br>
-                <strong>Payload Link:</strong> <a href="${email.body.split('http://localhost:8001')[1]}" style="color: #0ff;">${email.body}</a></p>
+                <strong>Login Verification Link:</strong> <a href="${email.body.split('http://localhost:8001')[1]}" style="color: #0ff;">${email.body}</a></p>
             `;
         });
     }
@@ -265,3 +265,4 @@ app.get('/logout', (req, res) => {
 });
 
 app.listen(8006, () => console.log('Altus Solutions app running internally on port 8006'));
+

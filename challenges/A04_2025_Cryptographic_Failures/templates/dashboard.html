@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aegis - Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; }
+        .navbar { background-color: #2c3e50; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .navbar a { color: #ecf0f1; text-decoration: none; font-size: 14px; border: 1px solid #ecf0f1; padding: 5px 15px; border-radius: 4px; }
+        .navbar a:hover { background-color: #ecf0f1; color: #2c3e50; }
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .welcome { font-size: 22px; color: #333; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .info-box { background: #e8f4f8; padding: 15px; border-left: 4px solid #3498db; margin-bottom: 20px; color: #2980b9; }
+        .admin-box { background: #fdf2e9; padding: 20px; border: 2px dashed #e67e22; border-radius: 8px; text-align: center; margin-top: 30px; }
+        .admin-title { color: #d35400; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
+        .flag { font-family: 'Courier New', Courier, monospace; font-size: 24px; color: #c0392b; background: #fadbd8; padding: 10px; border-radius: 4px; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><strong>Project Aegis</strong> | Internal Gateway</div>
+        <a href="/logout">Secure Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="welcome">Welcome back, <strong>{{ username }}</strong></div>
+        
+        <div class="info-box">
+            Your current authorization level allows you to view standard pension dispersal records. 
+            If you require administrative privileges, please contact the IT department.
+        </div>
+
+        {% if is_admin %}
+        <div class="admin-box">
+            <div class="admin-title">CLASSIFIED: ADMINISTRATIVE CLEARANCE RECOGNIZED</div>
+            <p>System integrity verification complete. Your flag is:</p>
+            <div class="flag">{{ flag }}</div>
+        </div>
+        {% else %}
+        <div style="text-align: center; margin-top: 40px; color: #95a5a6; font-size: 0.9em;">
+            [ ERROR 403: Administrative dashboard access denied for standard users. ]
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+

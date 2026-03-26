@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reset - Iron-Sight</title>
+    <style>body { background-color: #111; color: #0f0; font-family: monospace; text-align: center; padding: 50px; } input, button { margin: 5px; }</style>
+</head>
+<body>
+    <h2>Reset Password</h2>
+    <form method="POST" action="/reset_password?token={{ token }}">
+        <input type="hidden" name="token" value="{{ token }}">
+        <input type="password" name="password" placeholder="New Password" required><br>
+        <button type="submit">Update Password</button>
+    </form>
+</body>
+</html>
+

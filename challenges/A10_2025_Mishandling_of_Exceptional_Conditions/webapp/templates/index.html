@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+    <h1>Enterprise Software Solutions</h1>
+    <p>Secure, scalable infrastructure for modern teams.</p>
+</div>
+
+<div class="product-grid">
+    <!-- The Target Product -->
+    <div class="product-card">
+        <div class="product-img" style="background: #e0e7ff;">📦</div>
+        <h3>Enterprise Flag License</h3>
+        <p>Annual license for our premium CTF flag generation module.</p>
+        <div class="price">$1,000.00</div>
+        <a href="/product/1" class="btn">View Details</a>
+    </div>
+
+    <!-- Dummy Product to make it look real -->
+    <div class="product-card">
+        <div class="product-img" style="background: #fce7f3;">🛡️</div>
+        <h3>DDoS Protection Tier 1</h3>
+        <p>Basic traffic filtering and anomaly detection.</p>
+        <div class="price">$250.00 / mo</div>
+        <button class="btn btn-disabled" disabled>Out of Stock</button>
+    </div>
+</div>
+{% endblock %}
+

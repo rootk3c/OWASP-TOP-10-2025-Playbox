@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="checkout-layout">
+    <div class="checkout-form">
+        <h2>Payment Details</h2>
+        <p class="muted">Notice: Card processing is currently offline for maintenance. Only pre-paid accounts and valid promo codes are accepted.</p>
+        <div class="fake-inputs">
+            <input type="text" placeholder="Cardholder Name" disabled>
+            <input type="text" placeholder="Card Number" disabled>
+        </div>
+        <button class="btn btn-large btn-success" onclick="completeCheckout()">Submit Payment</button>
+        <div id="message"></div>
+    </div>
+
+    <div class="checkout-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-item">
+            <span>Enterprise Flag License</span>
+            <span>$1,000.00</span>
+        </div>
+        <hr>
+        <div class="discount-box">
+            <label>Promo Code (Try 'WELCOME100')</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="coupon-code" placeholder="Enter code">
+                <button class="btn" onclick="applyCoupon()">Apply</button>
+            </div>
+        </div>
+        <hr>
+        <div class="summary-total">
+            <span>Total Due</span>
+            <span id="cart-total-display">$1,000.00</span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

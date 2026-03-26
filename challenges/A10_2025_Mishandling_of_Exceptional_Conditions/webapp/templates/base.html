@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTech Solutions | Enterprise Software</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">NexTech Solutions</a>
+            <div class="nav-links">
+                <a href="/">Products</a>
+                <a href="/checkout" class="cart-link">Cart (<span id="nav-cart-total">$0</span>)</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NexTech Solutions Inc. All rights reserved. | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

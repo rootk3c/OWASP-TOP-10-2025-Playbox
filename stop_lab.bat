@@ -34,5 +34,13 @@ cd "challenges/A08_2025_Software_and_Data_Integrity_Failures"
 docker-compose down
 cd ..\..
 
+cd "challenges/A09_2025_Security_Logging_and_Alerting_Failures"
+docker-compose down
+cd ..\..
+
+cd "challenges/A10_2025_Mishandling_of_Exceptional_Conditions"
+docker-compose down
+cd ..\..
+
 echo [-] All stopped.
 pause

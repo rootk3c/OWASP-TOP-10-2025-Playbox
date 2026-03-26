@@ -1,0 +1,7 @@
+services:
+  iron-sight-a09:
+    build: .
+    container_name: ctf-a09-logging
+    ports:
+      - "8009:8009"
+    restart: unless-stopped

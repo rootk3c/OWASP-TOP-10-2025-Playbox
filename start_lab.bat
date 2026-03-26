@@ -56,6 +56,18 @@ docker-compose up -d --force-recreate --build
 cd ..\..
 
 echo.
+echo [+] Recreating A09: Security_Logging_and_Alerting_Failures (Port 8009)...
+cd "challenges/A09_2025_Security_Logging_and_Alerting_Failures"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+echo.
+echo [+] Recreating A10: Mishandling_of_Exceptional_Conditions (Port 8010)...
+cd "challenges/A10_2025_Mishandling_of_Exceptional_Conditions"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+echo.
 echo ====================================================
 echo  SYSTEMS RECREATED AND ONLINE
 echo  Dashboard: http://localhost:8000

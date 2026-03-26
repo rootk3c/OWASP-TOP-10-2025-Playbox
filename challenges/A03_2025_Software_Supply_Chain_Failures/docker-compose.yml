@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  status_checker:
+    build: .
+    ports:
+      - "8003:5000"
+    restart: always

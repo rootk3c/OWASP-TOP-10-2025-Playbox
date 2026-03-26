@@ -14,6 +14,10 @@ cd "challenges/A02_2025_Security_Misconfigurations"
 docker-compose down
 cd ..\..
 
+cd "challenges/A03_2025_Software_Supply_Chain_Failures"
+docker-compose down
+cd ..\..
+
 cd "challenges/A04_2025_Cryptographic_Failures"
 docker-compose down
 cd ..\..

@@ -7,7 +7,7 @@ import hashlib
 app = Flask(__name__)
 
 # The flag hidden in the admin dashboard
-FLAG = "CTF{A04_JWT_N0N3_BYP4SS_M4ST3R_2026}"
+FLAG = "CTF{A04_JWT_N0N3_BYP4SS_M4ST3R}"
 SECRET_KEY = b"SuperSecretGovKeyThatIsImpossibleToGuess12345!"
 
 # --- CUSTOM CRYPTO IMPLEMENTATION (VULNERABLE) ---

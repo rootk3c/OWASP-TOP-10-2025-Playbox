@@ -24,6 +24,12 @@ docker-compose up -d --force-recreate --build
 cd ..\..
 
 echo.
+echo [+] Recreating A02: Security Misconfigurations (Port 8002)...
+cd "challenges/A03_2025_Software_Supply_Chain_Failures"
+docker-compose up -d --force-recreate --build
+cd ..\..
+
+echo.
 echo [+] Recreating A02: Security Misconfigurations (Port 8004)...
 cd "challenges/A04_2025_Cryptographic_Failures"
 docker-compose up -d --force-recreate --build

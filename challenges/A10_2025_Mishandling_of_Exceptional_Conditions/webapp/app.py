@@ -23,8 +23,9 @@ def product(product_id):
 
 @app.route('/checkout')
 def checkout_page():
-    # If cart is empty, redirect to home
-    if session.get('cart_total', 0) == 0:
+    # If cart is entirely missing, redirect to home. 
+    # We allow $0 so players can still see the page after a successful exploit.
+    if session.get('cart_total') is None:
         return redirect(url_for('index'))
     return render_template('checkout.html')
 
@@ -60,8 +61,8 @@ def apply_discount():
         # STEP 1: Apply discount (State change)
         session['cart_total'] -= VALID_COUPONS[coupon]
 
-        # STEP 2: Log transaction (VULNERABLE: Fails on long User-Agent)
-        if len(user_agent) > 50:
+        # STEP 2: Log transaction (VULNERABLE: Fails on extremely long User-Agent)
+        if len(user_agent) > 255:
             raise ValueError("DB_INSERT_ERR: Data too long for column 'client_agent_string'")
         
         # STEP 3: Mark coupon as used (Never runs if Step 2 crashes)
@@ -81,8 +82,13 @@ def apply_discount():
 
 @app.route('/api/checkout', methods=['POST'])
 def complete_checkout():
-    total = session.get('cart_total', 0)
-    if total <= 0 and total is not 0: # Must be exactly 0 (or negative) after discount abuse
+    total = session.get('cart_total', 1000)
+    
+    # If the player abused the A10 vulnerability to drop the price to $0 or below, they win.
+    if total <= 0: 
         return jsonify({"success": True, "flag": "CTF{A10_excepT10n_m1shAndl1nG_ru1nS_st4te}"})
+        
     return jsonify({"success": False, "error": f"Balance remaining: ${total}. Add a payment method."}), 402
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

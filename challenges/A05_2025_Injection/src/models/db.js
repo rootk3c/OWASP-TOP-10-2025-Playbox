@@ -38,7 +38,7 @@ async function initDb() {
       db.run(`INSERT INTO azure_settings (key_name, value) VALUES
         ('blob_key', 'stolen_azure_blob_key'),
         ('container', 'exfiltrated_data'),
-        ('ctf_flag', 'CTF{cl0p_style_moveit_exploited}')`);
+        ('ctf_flag', 'CTF{m0v317_l1k3_7h3_cl0p_64n6}')`);
 
       db.run(`CREATE TABLE IF NOT EXISTS webshell (
         id INTEGER PRIMARY KEY,

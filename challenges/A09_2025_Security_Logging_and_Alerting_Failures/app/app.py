@@ -77,6 +77,12 @@ def dashboard():
         return redirect(url_for('login'))
     return render_template('dashboard.html', flag="FLAG{A09_V3rb0s3_L0gs_Sp3ll_D00m}")
 
+# FIX: Added base routes so Gobuster gets a 200 OK when finding the directory
+@app.route('/logs')
+@app.route('/logs/')
+def list_logs():
+    return "Index of /logs/", 200
+
 # A09 Core Issue: Exposing the log directory without authentication
 @app.route('/logs/<path:filename>')
 def serve_logs(filename):
@@ -84,3 +90,4 @@ def serve_logs(filename):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8009)
+
